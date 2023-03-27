@@ -8,11 +8,11 @@ const cors=require("cors")
 require("dotenv").config()
 const app = express()
 app.use(express.json())
-
 app.get("/",(req,res) => {
     res.send("Home-Page")
 
 })
+
 
 app.use("/users",userRouter)
 app.use(authonticate)
@@ -21,20 +21,22 @@ app.use(authonticate)
 
 app.use("/notes",noteRouter)
 
-app.get("/users",async(req,res) => {
-    let query = req.query
-    console.log(query)
-    try{
-        const users = await userModel.find(query)
-       res.send(users)
+
+
+// app.get("/users",async(req,res) => {
+//     let query = req.query
+//     console.log(query)
+//     try{
+//         const users = await userModel.find(query)
+//        res.send(users)
   
-    }catch(err){ 
-        res.send({"msg":"cannot get the User","error":err.message})
+//     }catch(err){ 
+//         res.send({"msg":"cannot get the User","error":err.message})
       
-    }
+//     }
     
     
-})
+// })
 
 app.listen(process.env.port, async() => {
     try{
